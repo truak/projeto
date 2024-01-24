@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2> Listar cursos </h2>
+    <a href="#"> Cadastrar novo curso </a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Carga horária</th>
+                <th>Investimento</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+                <tr>
+                    <td>{{curso.nome}}</td>
+                    <td>{{curso.carga_horaria}}</td>
+                    <td>{{alunos.investimento}}</td>
+                    <td>
+                        <a href="#">Editar</a>
+                        <a href="#">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}        
+        </tbody>
+    </table>
+{% endblock %}

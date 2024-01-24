@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2> Listar alunos </h2>
+    <a href="#"> Cadastrar novo aluno </a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+                <tr>
+                    <td>{{alunos.nome}}</td>
+                    <td>{{alunos.cpf}}</td>
+                    <td>{{alunos.email}}</td>
+                    <td>
+                        <a href="#">Editar</a>
+                        <a href="#">Excluir</a>
+                    </td>
+                </tr>
+            {% endfor %}        
+        </tbody>
+    </table>
+{% endblock %}
