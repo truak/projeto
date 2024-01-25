@@ -13,6 +13,12 @@ def listarAlunos(request):
     return render(request, 'listar_alunos.html', {'alunos': alunos})
 
 
+def excluirAluno(request, id):
+    aluno = Aluno.objects.get(id=id)
+    aluno.delete()
+    return redirect('listar_alunos')
+
+
 def incluirAluno(request):
     if request.method == 'POST':
         form = AlunoForm(request.POST)
@@ -27,13 +33,11 @@ def incluirAluno(request):
 def editarAluno(request, id):
     aluno = Aluno.objects.get(id=id)
     form = AlunoForm(instance=aluno)
-
     if request.method == 'POST':
         form = AlunoForm(request.POST, instance=aluno)
         if form.is_valid():
             form.save()
             return redirect('listar_alunos')
-
     return render(request, 'incluir_aluno.html', {'form': form})
 
 
@@ -55,12 +59,16 @@ def incluirCurso(request):
 
 def editarCurso(request, id):
     curso = Curso.objects.get(id=id)
-    form = CursoForm(instance=aluno)
-
+    form = CursoForm(instance=curso)
     if request.method == 'POST':
         form = CursoForm(request.POST, instance=curso)
         if form.is_valid():
             form.save()
             return redirect('listar_cursos')
-
     return render(request, 'incluir_curso.html', {'form': form})
+
+
+def excluirCurso(request, id):
+    curso = Curso.objects.get(id=id)
+    curso.delete()
+    return redirect('listar_cursos')
